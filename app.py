@@ -64,9 +64,9 @@ if prompt := st.chat_input("Pose ta question à Zeno..."):
                         "content": f"Informations du web à utiliser pour répondre avec précision :\n\n{resultats_web}"
                     })
             
-                        # Utilisation de Gemini Flash (Gratuit via OpenRouter)
+                                    # Utilisation de Mistral 7B (Gratuit via OpenRouter)
             stream = client.chat.completions.create(
-                model="google/gemini-2.0-flash-exp:free",
+                model="mistralai/mistral-7b-instruct:free",
                 messages=messages_pour_ia,
                 stream=True,
             )
