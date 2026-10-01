@@ -5,7 +5,7 @@ import os
 # Configuration de la page
 st.set_page_config(page_title="Zeno", page_icon="⚡")
 st.title("⚡ Zeno")
-st.caption("L'intelligence, en plus rapide. Créé par Lorenzo.")
+st.caption("L'intelligence, en plus rapide. Créé par Kairox.")
 
 # Récupération sécurisée de la clé API (on ne la montre jamais dans le code !)
 api_key = os.environ.get("GROQ_API_KEY")
