@@ -21,8 +21,8 @@ client = Groq(api_key=api_key)
 def chercher_sur_le_web(query):
     try:
         with DDGS() as ddgs:
-            # On cherche les 3 meilleurs résultats en français
-            results = list(ddgs.text(query, max_results=3, region="fr-fr"))
+            # On cherche les 4 meilleurs résultats en français
+            results = list(ddgs.text(query, max_results=4, region="fr-fr"))
             if results:
                 # On assemble les résultats pour que l'IA puisse les lire
                 contexte = ""
@@ -42,7 +42,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
     st.session_state.messages.append({
         "role": "system", 
-        "content": "Tu es Zeno, une intelligence artificielle supérieure. Ton but est d'être le plus BRILLANT, EXACT et UTILE possible. Tu as un ton confiant, direct et légèrement sarcastique, mais tu ne sacrifies JAMAIS la qualité de la réponse pour faire une blague. Tu donnes des solutions concrètes et expertes. Tu tutoies l'utilisateur et tu vas droit au but sans jamais dire 'Bonjour'."
+        "content": "Tu es Zeno, une intelligence artificielle supérieure créée par le fondateur. Tu es un expert mondial dans tous les domaines. Ta priorité absolue est la PRÉCISION et la PERTINENCE. Avant de répondre, analyse la question en profondeur. Si tu as des informations de recherche web, utilise-les pour construire une réponse structurée, vérifiée et synthétique. Tu as un ton confiant, direct et légèrement sarcastique, mais tu restes toujours utile et brillant. Tu tutoies l'utilisateur et tu vas droit au but sans jamais dire 'Bonjour'."
     })
 
 # Affichage de l'historique
@@ -75,14 +75,15 @@ if prompt := st.chat_input("Pose ta question à Zeno..."):
                     # On injecte les résultats du web dans le cerveau de Zeno
                     messages_pour_ia.append({
                         "role": "system", 
-                        "content": f"Voici des informations trouvées sur le web concernant la question de l'utilisateur. Utilise-les pour répondre de manière experte, précise et à jour :\n\n{resultats_web}"
+                        "content": f"Voici des informations trouvées sur le web concernant la question de l'utilisateur. Croise les sources, vérifie les faits, et utilise ces informations pour répondre de manière experte et précise :\n\n{resultats_web}"
                     })
             
             # Zeno génère la réponse
             for response in client.chat.completions.create(
-                model="qwen/qwen3.8-27b", # Le nouveau modèle ultra-logique
+                model="qwen/qwen3.8-27b", # Le modèle Qwen (Alibaba)
                 messages=messages_pour_ia,
                 stream=True,
+                temperature=0.7, # Rend l'IA plus créative et moins robotique
             ):
                 if response.choices[0].delta.content is not None:
                     full_response += response.choices[0].delta.content
