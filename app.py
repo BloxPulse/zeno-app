@@ -23,7 +23,7 @@ Ton : confiant, direct, légèrement sarcastique mais toujours brillant.
 Tutoie l'utilisateur. Ne dis jamais 'Bonjour' ou 'Salut'. Réponds direct.
 """
 
-model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_prompt)
+model = genai.GenerativeModel('gemini-2.0-flash', system_instruction=system_prompt)
 
 def chercher_sur_le_web(query):
     try:
