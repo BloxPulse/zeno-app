@@ -80,7 +80,7 @@ if prompt := st.chat_input("Pose ta question à Zeno..."):
             
             # Zeno génère la réponse
             for response in client.chat.completions.create(
-                model="qwen/qwen3.8-27b", # Le modèle Qwen (Alibaba)
+                model="llama-3.3-70b-versatile",
                 messages=messages_pour_ia,
                 stream=True,
                 temperature=0.7, # Rend l'IA plus créative et moins robotique
