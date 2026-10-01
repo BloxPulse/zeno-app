@@ -80,7 +80,7 @@ if prompt := st.chat_input("Pose ta question à Zeno..."):
             
             # Zeno génère la réponse
             for response in client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="openai/gpt-oss-120b",
                 messages=messages_pour_ia,
                 stream=True,
                 temperature=0.7, # Rend l'IA plus créative et moins robotique
