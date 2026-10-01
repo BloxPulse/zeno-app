@@ -42,7 +42,7 @@ if prompt := st.chat_input("Pose ta question à Zeno..."):
         full_response = ""
         try:
             for response in client.chat.completions.create(
-                model="llama-3.1-70b-versatile",
+                model="openai/gpt-oss-120b",
                 messages=st.session_state.messages,
                 stream=True,
             ):
